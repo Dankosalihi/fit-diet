@@ -1,7 +1,8 @@
 export interface UserInformation extends GoalSelection{
-    age: number | undefined;
-    weight: number | undefined;
-    height: number | undefined;
+    weight: number ;
+    height: number;
+    age: number;
+    gender: string;
 }
 
 export interface GoalSelection{
@@ -9,8 +10,9 @@ export interface GoalSelection{
     description: string;
 }
 
-export const goalSelections: UserInformation[] = [
-    { age: undefined, weight: undefined, height: undefined, goalId: "1" ,description: "Öka vikt"},
-    { age: undefined, weight: undefined, height: undefined, goalId: "2" ,description: "Minska vikt"},
-    { age: undefined, weight: undefined, height: undefined, goalId: "3" ,description: "Behålla vikt"},
+
+export const goalSelection: GoalSelection[] = [
+    {goalId: "1" ,description: "Öka vikt"},
+    {goalId: "2",description: "Minska vikt"},
+    {goalId: "3" ,description: "Behålla vikt"},
 ];
