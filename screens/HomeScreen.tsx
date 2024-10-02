@@ -7,6 +7,8 @@ type HomeProps = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: HomeProps) {
   const handlePress = (goalId: string) => {
     navigation.navigate("Mål", { id: goalId });
+    navigation.popToTop();
+    navigation.replace("Profil", { id: goalId });
   };
   return (
     <View style={styles.container}>

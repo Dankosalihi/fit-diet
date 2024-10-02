@@ -2,8 +2,9 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useContext } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { RadioButton } from "react-native-paper";
 import { Context, RootStackParamList } from "../App";
-import { UserInformation } from "../data/goalSelection";
+import { UserInformation, goalSelection } from "../data/goalSelection";
 
 type UserFormScreenNavigation = NativeStackNavigationProp<
   RootStackParamList,
@@ -31,6 +32,8 @@ export default function UserFormScreen() {
     setAge,
     genderInPut,
     setGender,
+    checked,
+    setChecked,
   } = context;
   // useContext(Context)
 
@@ -41,11 +44,17 @@ export default function UserFormScreen() {
     gender: genderInPut,
     goalId: id,
     description: "",
+    activityLevelText: "",
+    activityLevelId: parseInt(checked),
   };
 
   const handleSubmit = () => {
     navigation.navigate("Uträkning", { userInformation });
   };
+
+  ///
+
+  const text = "Hello, my container is blurring contents underneath!";
 
   return (
     <View style={styles.container}>
@@ -76,9 +85,26 @@ export default function UserFormScreen() {
         value={genderInPut}
         placeholder="Man/Kvinna"
       />
-
+      <Text> Välj aktivitetsgrad</Text>
+      <View>
+        {goalSelection.map((activityLevelSelection) => (
+          <View key={activityLevelSelection.activityLevelId}>
+            <Text>{activityLevelSelection.activityLevelText}</Text>
+            <RadioButton
+              value={userInformation.activityLevelId.toString()}
+              status={
+                checked == activityLevelSelection.activityLevelId.toString()
+                  ? "checked"
+                  : "unchecked"
+              }
+              onPress={() =>
+                setChecked(activityLevelSelection.activityLevelId.toString())
+              }
+            />
+          </View>
+        ))}
+      </View>
       <Button onPress={handleSubmit} title="Gå vidare" />
-      <Text>{id}</Text>
     </View>
   );
 }

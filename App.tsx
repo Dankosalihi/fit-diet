@@ -6,12 +6,16 @@ import { StyleSheet } from "react-native";
 import { UserInformation } from "./data/goalSelection";
 import AfterSubmitScreen from "./screens/AfterSubmitScreen";
 import HomeScreen from "./screens/HomeScreen";
-import UserFormScreen from "./screens/UserFormScreen";
+import {
+  default as ProfileScreen,
+  default as UserFormScreen,
+} from "./screens/UserFormScreen";
 
 export type RootStackParamList = {
   Home: undefined;
   Mål: { id: string };
   Uträkning: { userInformation: UserInformation };
+  Profil: { id: string };
 };
 
 export interface Prop {
@@ -23,6 +27,8 @@ export interface Prop {
   setAge: (value: string) => void;
   genderInPut: string;
   setGender: (value: string) => void;
+  checked: string;
+  setChecked: (value: string) => void;
 }
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -36,6 +42,9 @@ export default function App() {
   const [lenghtInPut, setLenght] = useState("");
   const [ageInPut, setAge] = useState("");
   const [genderInPut, setGender] = useState("");
+  const [checked, setChecked] = useState("");
+
+  const isDone = true;
 
   return (
     // <Context.Provider>
@@ -49,6 +58,8 @@ export default function App() {
         setAge,
         genderInPut,
         setGender,
+        checked,
+        setChecked,
       }}
     >
       <NavigationContainer>
@@ -57,6 +68,7 @@ export default function App() {
           <RootStack.Screen name="Home" component={HomeScreen} />
           <RootStack.Screen name="Mål" component={UserFormScreen} />
           <RootStack.Screen name="Uträkning" component={AfterSubmitScreen} />
+          <RootStack.Screen name="Profil" component={ProfileScreen} />
         </RootStack.Navigator>
       </NavigationContainer>
     </Context.Provider>

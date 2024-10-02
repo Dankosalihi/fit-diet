@@ -31,21 +31,57 @@ export default function AfterSubmitScreen({ route }: Props) {
   const CalculateBmi = () => {
     if (userInformation.goalId === "1") {
       if (userInformation.gender === "Man") {
-        return BmiCalculateMale();
+        if (userInformation.activityLevelId == 1) {
+          return Math.round(BmiCalculateMale() * 1.375 + 500);
+        } else if (userInformation.activityLevelId == 2) {
+          return Math.round(BmiCalculateMale() * 1.55 + 500);
+        } else if (userInformation.activityLevelId == 3) {
+          return Math.round(BmiCalculateMale() * 1.725 + 500);
+        }
       } else if (userInformation.gender === "Kvinna") {
-        return BmiCalculateFemale();
+        if (userInformation.activityLevelId == 1) {
+          return Math.round(BmiCalculateFemale() * 1.375 + 500);
+        } else if (userInformation.activityLevelId == 2) {
+          return Math.round(BmiCalculateFemale() * 1.55 + 500);
+        } else if (userInformation.activityLevelId == 3) {
+          return Math.round(BmiCalculateFemale() * 1.725 + 500);
+        }
       }
     } else if (userInformation.goalId === "2") {
       if (userInformation.gender === "Man") {
-        return "c";
+        if (userInformation.activityLevelId == 1) {
+          return Math.round(BmiCalculateMale() * 1.375 - 500);
+        } else if (userInformation.activityLevelId == 2) {
+          return Math.round(BmiCalculateMale() * 1.55 - 500);
+        } else if (userInformation.activityLevelId == 3) {
+          return Math.round(BmiCalculateMale() * 1.725 - 500);
+        }
       } else if (userInformation.gender === "Kvinna") {
-        return "d";
+        if (userInformation.activityLevelId == 1) {
+          return Math.round(BmiCalculateFemale() * 1.375 - 500);
+        } else if (userInformation.activityLevelId == 2) {
+          return Math.round(BmiCalculateFemale() * 1.55 - 500);
+        } else if (userInformation.activityLevelId == 3) {
+          return Math.round(BmiCalculateFemale() * 1.725 - 500);
+        }
       }
     } else if (userInformation.goalId === "3") {
       if (userInformation.gender === "Man") {
-        return "e";
+        if (userInformation.activityLevelId == 1) {
+          return Math.round(BmiCalculateMale() * 1.375);
+        } else if (userInformation.activityLevelId == 2) {
+          return Math.round(BmiCalculateMale() * 1.55);
+        } else if (userInformation.activityLevelId == 3) {
+          return Math.round(BmiCalculateMale() * 1.725);
+        }
       } else if (userInformation.gender === "Kvinna") {
-        return "f";
+        if (userInformation.activityLevelId == 1) {
+          return Math.round(BmiCalculateFemale() * 1.375);
+        } else if (userInformation.activityLevelId == 2) {
+          return Math.round(BmiCalculateFemale() * 1.55);
+        } else if (userInformation.activityLevelId == 3) {
+          return Math.round(BmiCalculateFemale() * 1.725);
+        }
       }
     }
   };
@@ -57,6 +93,7 @@ export default function AfterSubmitScreen({ route }: Props) {
       <Text>Height: {userInformation.height}</Text>
       <Text>Age: {userInformation.age}</Text>
       <Text>Gender: {userInformation.gender}</Text>
+      <Text>Activity {userInformation.activityLevelId}</Text>
     </View>
   );
 }
